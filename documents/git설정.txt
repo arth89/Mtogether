@@ -15,7 +15,7 @@ git@github.com:arth89/Mtogether.git
 
 - 순서 -
 
-1. Rescan
+1. Resc
 
 2. Stage Changed (혹은 Commit > Stage to Commit)
 
