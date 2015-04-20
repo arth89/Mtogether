@@ -9,3 +9,6 @@ git@github.com:arth89/Mtogether.git
 
 
 ssh-keygen -C "메일주소" -t rsa
+
+
+asdasd
