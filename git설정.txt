@@ -1,11 +1,28 @@
 http://dev.azki.org/40
 
+
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 $ git config --list
+$ ssh-keygen -C "메일주소" -t rsa
 
 
 git@github.com:arth89/Mtogether.git
 
 
-ssh-keygen -C "메일주소" -t rsa
+중요 - 순서 -
+1. Rescan
+
+2. Stage Changed
+
+3. Commit Message 작성 
+
+4. Commit
+
+4. Remote > Fetch from > origin
+
+5. Merge > Local Merge
+
+6. 충돌 나는 코드 확인
+
+7. Push
