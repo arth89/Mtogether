@@ -1,0 +1,11 @@
+http://dev.azki.org/40
+
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+$ git config --list
+
+
+git@github.com:arth89/Mtogether.git
+
+
+ssh-keygen -C "메일주소" -t rsa
