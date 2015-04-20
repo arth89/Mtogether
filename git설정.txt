@@ -7,10 +7,12 @@ $ git config --list
 $ ssh-keygen -C "메일주소" -t rsa
 
 
+
 git@github.com:arth89/Mtogether.git
 
 
-중요 - 순서 -
+
+- 순서 -
 1. Rescan
 
 2. Stage Changed
