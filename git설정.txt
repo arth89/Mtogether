@@ -13,9 +13,10 @@ git@github.com:arth89/Mtogether.git
 
 
 - 순서 -
+
 1. Rescan
 
-2. Stage Changed
+2. Stage Changed (혹은 Commit > Stage to Commit)
 
 3. Commit Message 작성 
 
