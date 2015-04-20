@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="그룹명" />
+
+        <TextView
+            android:id="@+id/tv_stanby_server_groupname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="그룹명"
+            android:textSize="20dp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_stanby_server_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연결을 대기중입니다." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="10dp"
+         >
+
+        <LinearLayout
+            android:id="@+id/ll_stanby_server_device1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" 
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_stand_by_device1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="device 1" />
+
+            <Button
+                android:id="@+id/btn_temp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_stanby_server_device2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" 
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_stand_by_device2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="device 2" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_stanby_server_device3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" 
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_stand_by_device3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="device 3" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_stanby_server_device4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="bottom" >
+
+            <TextView
+                android:id="@+id/tv_stand_by_device4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="device 4" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_stanby_server_device5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" 
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_stand_by_device5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="device 5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="  " />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

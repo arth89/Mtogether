@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="number of device :" 
+        android:textSize="20dp"
+        />
+    <RadioGroup 
+        android:id="@+id/tv_setting_deviceNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RadioButton 
+            android:id="@+id/tv_setting_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"
+            />
+        <RadioButton 
+            android:id="@+id/tv_setting_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            />
+        <RadioButton 
+            android:id="@+id/tv_setting_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4"
+            />
+        <RadioButton 
+            android:id="@+id/tv_setting_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5"
+            />
+        
+    </RadioGroup>
+    
+    <Button 
+        android:id="@+id/tv_setting_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start"
+        android:textSize="20dp"/>
+    
+
+</LinearLayout>
