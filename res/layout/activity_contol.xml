@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="volume" />
                 <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -126,13 +126,16 @@
         android:layout_width="1dp"
         android:layout_height="1dp" />
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleLarge"
-            
+       
+        <LinearLayout 
+            android:id="@+id/layout_turntable"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:layout_height="match_parent" />
+            android:orientation="horizontal">
+            
+        </LinearLayout>
+        
 
     </LinearLayout>
 

@@ -17,6 +17,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.lg.mtogether.R;
 
@@ -36,6 +37,9 @@ public class ContolActivity extends Activity implements Callback {
 	boolean flag;
 	// volume 관련
 	AudioManager audio;
+	
+	//TurnTable
+	Turntable mTurntable;
 	
 	// bit sound 관련 method
 	public void sound1(int start, int num, int replay) {
@@ -107,6 +111,11 @@ public class ContolActivity extends Activity implements Callback {
 		bit2=(Button)findViewById(R.id.bit2);
 		bit3=(Button)findViewById(R.id.bit3);
 		scratch=(Button)findViewById(R.id.scratch);
+		
+		//Turntable
+		LinearLayout layout = (LinearLayout)findViewById(R.id.layout_turntable);
+		mTurntable = new Turntable(this, layout);
+		layout.addView(mTurntable);
 
 		
 //bit sound
