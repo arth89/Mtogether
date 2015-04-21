@@ -61,47 +61,70 @@
                     android:text="Scratch" />
 
             </LinearLayout>
-            <TextView
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="volume" />
+                <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Flash" />
+                
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <Button
+                    android:id="@+id/volup"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="vol up" />
 
                 <Button
+                    android:id="@+id/voldown"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="vol down" />
 
                 <Button
+                    android:id="@+id/flashon"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="flash on" />
 
                 <Button
+                    android:id="@+id/flashoff"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="flash off" />
 
             </LinearLayout>
+            
 
         </LinearLayout>
+        
+        <SurfaceView
+        android:id="@+id/PREVIEW"
+        android:layout_width="1dp"
+        android:layout_height="1dp" />
 
         <ProgressBar
             android:id="@+id/progressBar1"

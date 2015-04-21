@@ -1,26 +1,40 @@
 package com.lg.mtogether.server;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.hardware.Camera;
+import android.hardware.Camera.Parameters;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.lg.mtogether.R;
 
-public class ContolActivity extends Activity {
+@SuppressWarnings("deprecation")
+public class ContolActivity extends Activity implements Callback {
 
-	Button bit1, bit2, bit3, scratch;
+	Button bit1, bit2, bit3, scratch, volUp, volDown, flashON, flashOFF;
+	// bit sound 관련
 	SoundPool sound;
 	int[] soundId = {0,0,0,0};
 	int[] streamId = {0,0,0,0};
 	int num1 = 0, num2 = 0, num3 = 0; // 첫번째 클릭과 두번째 클릭 구분을 위한 값
+	// flash 관련
+	private Camera camera;
+	Parameters parameters;
+	SurfaceHolder mHolder;
+	boolean flag;
 	
+	// bit sound관련 method
 	public void sound1(int start, int num, int replay) {
 		if (start == 0) {
 			Log.d("sound", "sound id " + soundId[num]);
@@ -38,6 +52,47 @@ public class ContolActivity extends Activity {
 		}
 	}
 	
+	//flash 관련method
+	Runnable myThread = new Runnable() {
+		@Override
+		public void run() {
+			while (flag) {
+				parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
+				camera.setParameters(parameters);
+				camera.startPreview();
+
+				try {
+					Thread.sleep(300, 0);
+				} catch (InterruptedException e) {
+				}
+
+				parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
+				camera.setParameters(parameters);
+				camera.stopPreview();
+			}
+		}
+	};
+	protected void onStop() {
+		super.onStop();
+		if (camera != null) {
+			camera.release();
+		}
+	}
+	public void surfaceCreated(SurfaceHolder holder) {
+		try {
+			camera.setPreviewDisplay(holder);
+		} catch (IOException e) {
+		}
+	}
+	public void surfaceDestroyed(SurfaceHolder holder) {
+//		camera.stopPreview();
+//		mHolder = null;
+	}
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
+	}
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +103,9 @@ public class ContolActivity extends Activity {
 		bit2=(Button)findViewById(R.id.bit2);
 		bit3=(Button)findViewById(R.id.bit3);
 		scratch=(Button)findViewById(R.id.scratch);
+
 		
+//bit sound
 		 sound = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 		 soundId[0] = sound.load(this, R.raw.music1, 1);
 		 Log.d("sound", "music1 load :"+soundId[0]);
@@ -102,25 +159,45 @@ public class ContolActivity extends Activity {
 					sound1(0, 3, 1);
 			}
 		});
+	
+//volume
+		volUp = (Button)findViewById(R.id.volup);
+		volDown = (Button)findViewById(R.id.voldown);
+
+		
+//flash 
+		flashON = (Button)findViewById(R.id.flashon);
+		flashOFF = (Button)findViewById(R.id.flashoff);
+		
+		SurfaceView preview = (SurfaceView) findViewById(R.id.PREVIEW);
+		mHolder = preview.getHolder();
+		mHolder.addCallback(this);
+		
+		camera = Camera.open();
+		parameters = camera.getParameters();
+		
+		
+		flashON.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				flag = true;
+				new Thread(myThread).start();
+			}
+		});
+
+		
+		flashOFF.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				flag = false;
+				parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
+				camera.setParameters(parameters);
+				camera.stopPreview();
+			}
+		});
+		
 		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.contol, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 }
