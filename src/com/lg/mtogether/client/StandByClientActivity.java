@@ -39,9 +39,9 @@ public class StandByClientActivity extends Activity implements ConnectionInfoLis
 		setContentView(R.layout.activity_stand_by_client);		
 		setMyP2pManager();
 		
-		i=getIntent();
-		InetAddress ServerIP = i.getParcelableExtra("groupOwnerAddress");
-		Log.i("SERVER IP ",ServerIP.toString());
+//		i=getIntent();
+//		InetAddress ServerIP = i.getParcelableExtra("groupOwnerAddress");
+//		Log.i("SERVER IP ",ServerIP.toString());
 		
 		
 		
