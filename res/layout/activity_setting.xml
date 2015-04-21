@@ -5,52 +5,73 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
-    
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="number of device :" 
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:text="M together를 시작합니다.\n\n연결할 기기의 개수를 선택한 후\n연결시작 버튼을 눌러주세요." 
         android:textSize="20dp"
         />
-    <RadioGroup 
+
+ 
+    <RadioGroup
         android:id="@+id/tv_setting_deviceNumber"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
         <RadioButton 
             android:id="@+id/tv_setting_two"
-            android:layout_width="match_parent"
+			android:textSize="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:layout_gravity="center"
+            android:text="   2   " 
             />
         <RadioButton 
             android:id="@+id/tv_setting_three"
-            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:layout_gravity="center"
+            android:text="   3   "
             />
         <RadioButton 
             android:id="@+id/tv_setting_four"
-            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
+            android:layout_gravity="center"
+            android:text="   4   "
             />
         <RadioButton 
             android:id="@+id/tv_setting_five"
-            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text="   5   "
             />
         
     </RadioGroup>
     
-    <Button 
-        android:id="@+id/tv_setting_start"
+    <LinearLayout 
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+         <Button 
+        android:id="@+id/tv_setting_start"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:layout_width="match_parent"
+        android:text="연결 시작"
         android:textSize="20dp"/>
+        
+    </LinearLayout>
+   
     
 
 </LinearLayout>
