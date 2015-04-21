@@ -26,21 +26,16 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080004;
-        public static final int action_settings=0x7f08002d;
+        public static final int action_settings=0x7f080028;
         public static final int btn_play_disconnect=0x7f08000f;
-        public static final int btn_temp1=0x7f080025;
+        public static final int btn_temp1=0x7f080024;
         public static final int btn_temp2=0x7f08001a;
         public static final int button1=0x7f08000b;
         public static final int button2=0x7f08000c;
-        public static final int imageView1=0x7f08002a;
+        public static final int imageView1=0x7f080025;
         public static final int list_music=0x7f080006;
-        public static final int list_one_aname=0x7f08002c;
-        public static final int list_one_mname=0x7f08002b;
-        public static final int ll_stanby_client_device1=0x7f080024;
-        public static final int ll_stanby_client_device2=0x7f080026;
-        public static final int ll_stanby_client_device3=0x7f080027;
-        public static final int ll_stanby_client_device4=0x7f080028;
-        public static final int ll_stanby_client_device5=0x7f080029;
+        public static final int list_one_aname=0x7f080027;
+        public static final int list_one_mname=0x7f080026;
         public static final int ll_stanby_server_device1=0x7f080018;
         public static final int ll_stanby_server_device2=0x7f08001b;
         public static final int ll_stanby_server_device3=0x7f08001d;
