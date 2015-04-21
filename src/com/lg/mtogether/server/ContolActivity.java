@@ -3,6 +3,7 @@ package com.lg.mtogether.server;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
@@ -33,8 +34,10 @@ public class ContolActivity extends Activity implements Callback {
 	Parameters parameters;
 	SurfaceHolder mHolder;
 	boolean flag;
+	// volume 包访
+	AudioManager audio;
 	
-	// bit sound包访 method
+	// bit sound 包访 method
 	public void sound1(int start, int num, int replay) {
 		if (start == 0) {
 			Log.d("sound", "sound id " + soundId[num]);
@@ -52,7 +55,7 @@ public class ContolActivity extends Activity implements Callback {
 		}
 	}
 	
-	//flash 包访method
+	//flash 包访 method
 	Runnable myThread = new Runnable() {
 		@Override
 		public void run() {
@@ -87,6 +90,7 @@ public class ContolActivity extends Activity implements Callback {
 	public void surfaceDestroyed(SurfaceHolder holder) {
 //		camera.stopPreview();
 //		mHolder = null;
+//		camera.release();
 	}
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
@@ -163,6 +167,19 @@ public class ContolActivity extends Activity implements Callback {
 //volume
 		volUp = (Button)findViewById(R.id.volup);
 		volDown = (Button)findViewById(R.id.voldown);
+		audio = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+		volUp.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(audio.getStreamVolume(AudioManager.STREAM_MUSIC)+3), AudioManager.FLAG_PLAY_SOUND);
+				Log.d("vol", (int)(audio.getStreamVolume(AudioManager.STREAM_RING))+"");
+			}
+		});
+		volDown.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(audio.getStreamVolume(AudioManager.STREAM_MUSIC)-3), AudioManager.FLAG_PLAY_SOUND);
+				Log.d("vol", (int)(audio.getStreamVolume(AudioManager.STREAM_MUSIC))+"");
+			}
+		});
 
 		
 //flash 
@@ -173,7 +190,10 @@ public class ContolActivity extends Activity implements Callback {
 		mHolder = preview.getHolder();
 		mHolder.addCallback(this);
 		
+		Log.d("flash", "before" );
 		camera = Camera.open();
+		Log.d("flash", "after");
+		
 		parameters = camera.getParameters();
 		
 		
