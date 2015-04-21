@@ -1,41 +1,54 @@
 package com.lg.mtogether.client;
 
+import java.net.InetAddress;
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.p2p.WifiP2pDeviceList;
-import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
+import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pInfo;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lg.mtogether.R;
+import com.lg.mtogether.constant.Utils;
+import com.lg.mtogether.receiver.WiFiDirectBroadcastReceiver;
 
-public class StandByClientActivity extends Activity {
+public class StandByClientActivity extends Activity implements ConnectionInfoListener {
 
+	
+	IntentFilter mIntentFilter;
+
+	WifiP2pManager mManager;
+	Channel mChannel;
+	BroadcastReceiver mReceiver;
+	
+	Intent i;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_stand_by_client);
+		setContentView(R.layout.activity_stand_by_client);		
+		setMyP2pManager();
 		
-		Intent receive = getIntent();
-		int control = receive.getIntExtra("control", 0);
-		int device = receive.getIntExtra("device", 0);
-		int num = receive.getIntExtra("num", 0);
+		i=getIntent();
+		InetAddress ServerIP = i.getParcelableExtra("groupOwnerAddress");
+		Log.i("SERVER IP ",ServerIP.toString());
+		
+		
 		
 		TextView title = (TextView)findViewById(R.id.tv_stanby_client_title);
-		LinearLayout device1 = (LinearLayout)findViewById(R.id.ll_stanby_client_device1);
-		LinearLayout device2 = (LinearLayout)findViewById(R.id.ll_stanby_client_device2);
-		LinearLayout device3 = (LinearLayout)findViewById(R.id.ll_stanby_client_device3);
-		LinearLayout device4 = (LinearLayout)findViewById(R.id.ll_stanby_client_device4);
-		LinearLayout device5 = (LinearLayout)findViewById(R.id.ll_stanby_client_device5);
-		
 		/** 임시 화면전환용 버튼 */
 		////////////////////////////////////
 		Button btn = (Button)findViewById(R.id.btn_temp1);
-		
 		btn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -48,32 +61,50 @@ public class StandByClientActivity extends Activity {
 		});
 		///////////////////////////////////
 		
-		if (num!=0) {
-			switch(num) {
-			case 2:
-				device3.setVisibility(View.GONE);
-			case 3:
-				device4.setVisibility(View.GONE);
-			case 4:
-				device5.setVisibility(View.GONE);
-			case 5:
-				break;
-			}
-		}
-		
-		if (control == 1) {
-			title.setText("waiting devices...");
-			control=0;
-			//연결이 완료되면 음악파일 선택 모드로 넘어감.
-		}
-		if (device == 1) {
-			title.setText("contact ok.. "+"\n"+"waiting other devices"+"\n");
-			device=0;
-			//연결이 완료되면 재생대기 상태로 넘어감.
-		}
-		
+		title.setText("그룹연결 구성중입니다.");
 		
 	}
+
+	
+	private void setMyP2pManager(){
+
+		mIntentFilter = new IntentFilter();
+		mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+		mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+		mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+		mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+		mChannel = mManager.initialize(this, getMainLooper(), null);
+		
+		mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		registerReceiver(mReceiver, mIntentFilter);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		unregisterReceiver(mReceiver);
+		
+	}
+
+	@Override
+	public void onConnectionInfoAvailable(WifiP2pInfo info) {
+		// TODO 연결해제시에만 이 콜백메소드가 호출됩니다. 연결해제 관련 코드는 이곳에
+		Log.i("STANDBYCLIENTACTIVITY", "연결해제!!!!");
+		
+		
+		Utils.makeToast(getApplicationContext(), "연결이 해제되었습니다.");
+		finish();
+		
+	}
+
+
+
 
 	
 }

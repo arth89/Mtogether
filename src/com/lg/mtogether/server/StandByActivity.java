@@ -129,9 +129,6 @@ public class StandByActivity extends Activity implements GroupInfoListener{
 		mChannel = mManager.initialize(this, getMainLooper(), null);
 		
 		setGroupName();
-		
-		
-		
 		mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this,num);
 	}
 
@@ -141,7 +138,6 @@ public class StandByActivity extends Activity implements GroupInfoListener{
 
 			@Override
 			public void onSuccess() {
-				//groupName.setText(Utils.getBtName());
 				title.setText("연결을 대기중입니다.");
 				Toast.makeText(getApplicationContext(),"연결 그룹 구성을 완료하였습니다.", Toast.LENGTH_SHORT).show();
 
@@ -156,16 +152,10 @@ public class StandByActivity extends Activity implements GroupInfoListener{
 
 	@Override
 	public void onGroupInfoAvailable(WifiP2pGroup group) {
-
-		
-		
 		
 		if(group==null){
 			return;
 		}
-		
-		//groupName.setText(group.getOwner().deviceName);
-		
 		ArrayList<WifiP2pDevice> clientList = new ArrayList<WifiP2pDevice>();
 		clientList.addAll(group.getClientList());
 		
