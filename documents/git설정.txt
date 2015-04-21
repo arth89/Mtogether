@@ -11,6 +11,10 @@ $ ssh-keygen -C "메일주소" -t rsa
 git@github.com:arth89/Mtogether.git
 
 
+
+
+
+
 - 순서 -
 
 1. Rescan
